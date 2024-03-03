@@ -1,0 +1,32 @@
+{
+  "name": "users",
+  "version": "1.0.0",
+  "description": "users service for music app",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "lint": "eslint --ext .js src",
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js"
+  },
+  "keywords": [
+    "users",
+    "music"
+  ],
+  "author": {
+    "name": "Alexey Shabarshov",
+    "email": "shabarshov3228@mail.ru",
+    "url": "http://github.com/shabarshov"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "husky": "^9.0.11",
+    "nodemon": "^3.1.0"
+  }
+}
