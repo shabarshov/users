@@ -1,13 +1,12 @@
-import express from "express"
+const express = require("express")
+const swaggerUi = require("swagger-ui-express")
+const swaggerDocument = require("./docs/users.json")
 
 const PORT = 8080
 
 const app = express()
 
-app.get("/", (req, res) => {
-  console.log("GET /")
-  res.json({ message: "Hello, world!" })
-})
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}...`)
