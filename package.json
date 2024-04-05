@@ -8,7 +8,8 @@
     "prepare": "husky",
     "lint": "eslint --ext .js src",
     "dev": "nodemon ./src/index.js",
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "cl": "rm -rf ./logs/*"
   },
   "keywords": [
     "users",
@@ -27,7 +28,8 @@
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.2",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.13.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
