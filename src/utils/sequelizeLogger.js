@@ -1,5 +1,3 @@
-const winston = require("winston")
-
 const generateSequelizeLogFilename = () => {
   const currentDate = new Date()
 
@@ -16,12 +14,4 @@ const generateSequelizeLogFilename = () => {
   return `logs/sequelize_${formattedDate}.log`
 }
 
-const sequelizeLogger = winston.createLogger({
-  level: "debug" || "info",
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({ filename: generateSequelizeLogFilename() }),
-  ],
-})
-
-module.exports = sequelizeLogger
+module.exports = generateSequelizeLogFilename

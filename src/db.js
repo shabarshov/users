@@ -1,7 +1,7 @@
 require("dotenv").config()
 
 const { Sequelize } = require("sequelize")
-const sequelizeLogger = require("./logger")
+const sequelizeLogger = require("./config/logger")
 
 module.exports = new Sequelize(
   process.env.DB_NAME,
