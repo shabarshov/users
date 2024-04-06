@@ -2,7 +2,7 @@ require("dotenv").config()
 
 const express = require("express")
 
-const sequelize = require("./db")
+const sequelize = require("./config/db")
 // eslint-disable-next-line no-unused-vars
 const { User, Song, Album, History } = require("./models/index")
 
