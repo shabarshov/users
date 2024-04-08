@@ -4,6 +4,17 @@
   "description": "users service for music app",
   "main": "./src/index.js",
   "type": "commonjs",
+  "baseUrl": ".",
+  "imports": {
+    "#*": "./src/*.js",
+    "#config/*": "./src/config/*.js",
+    "#controllers/*": "./src/controllers/*.js",
+    "#docs/*": "./src/docs/*.json",
+    "#models/*": "./src/models/*.js",
+    "#routes/*": "./src/routes/*.js",
+    "#services/*": "./src/services/*.js",
+    "#utils/*": "./src/utils/*.js"
+  },
   "scripts": {
     "prepare": "husky",
     "lint": "eslint --ext .js src",

@@ -1,5 +1,5 @@
 const winston = require("winston")
-const generateSequelizeLogFilename = require("../utils/sequelizeLogger")
+const generateSequelizeLogFilename = require("#utils/sequelizeLogger")
 
 const sequelizeLogger = winston.createLogger({
   level: "debug" || "info",

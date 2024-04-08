@@ -2,17 +2,17 @@ require("dotenv").config()
 
 const express = require("express")
 
-const sequelize = require("./config/db")
+const sequelize = require("#config/db")
 // eslint-disable-next-line no-unused-vars
-const { User, Song, Album, History } = require("./models/index")
+const { User, Song, Album, History } = require("#models/index")
 
 const swaggerUi = require("swagger-ui-express")
-const swaggerDocument = require("./docs/users.json")
+const swaggerDocument = require("#docs/users")
 
-const usersRoutes = require("./routes/users")
-const songsRoutes = require("./routes/songs")
-const historyRoutes = require("./routes/history")
-const albumsRoutes = require("./routes/albums")
+const usersRoutes = require("#routes/users")
+const songsRoutes = require("#routes/songs")
+const historyRoutes = require("#routes/history")
+const albumsRoutes = require("#routes/albums")
 
 const PORT = process.env.PORT || 8080
 

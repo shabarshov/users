@@ -1,6 +1,6 @@
-const userService = require("../../services/userService")
-const requestBodyKeys = require("../../constants")
-const objectValidator = require("../../utils/objectValidator")
+const userService = require("#services/userService")
+const requestBodyKeys = require("#constants")
+const objectValidator = require("#utils/objectValidator")
 
 const createUserController = async (req, res) => {
   try {
