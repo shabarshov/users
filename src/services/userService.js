@@ -1,12 +1,15 @@
 const User = require("#models/User")
 
 const createUser = async (userData) => {
-  const newUser = new User(userData)
-  return await newUser.save()
+  return await User.create(userData)
 }
 
 const getUserByUsername = async (username) => {
   return await User.findOne({ where: { username: username } })
+}
+
+const getUserById = async (userId) => {
+  return await User.findByPk(userId)
 }
 
 const deleteUserById = async (userId) => {
@@ -20,14 +23,13 @@ const updateUserById = async (userId, newData) => {
     return null
   }
 
-  await user.update(newData)
-
-  return user
+  return await user.update(newData)
 }
 
 module.exports = {
   createUser,
   getUserByUsername,
+  getUserById,
   deleteUserById,
   updateUserById,
 }
