@@ -5,7 +5,7 @@ const History = sequelize.define(
   "history",
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    song_id: { type: DataTypes.INTEGER, allowNull: false },
+    songId: { type: DataTypes.INTEGER, allowNull: false },
   },
   {
     freezeTableName: true,
