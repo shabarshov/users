@@ -28,4 +28,15 @@ const requestBodyKeys = {
   },
 }
 
-module.exports = requestBodyKeys
+const logFilePaths = {
+  node: {
+    errors: "./logs/node/errors.log",
+    info: "./logs/node/info.log",
+  },
+  sequelize: {
+    errors: "./logs/sequelize/errors.log",
+    info: "./logs/sequelize/info.log",
+  },
+}
+
+module.exports = { requestBodyKeys, logFilePaths }

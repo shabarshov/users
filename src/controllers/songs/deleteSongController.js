@@ -1,4 +1,5 @@
 const songService = require("#services/songService")
+const { nodeLogger } = require("#config/logger")
 
 const deleteSongController = async (req, res) => {
   try {
@@ -20,7 +21,7 @@ const deleteSongController = async (req, res) => {
 
     return res.status(200).json({ data: {} })
   } catch (e) {
-    console.log(e)
+    nodeLogger.error(e)
     return res.status(500).json({
       errors: [{ code: 500, message: "Server Error" }],
     })

@@ -1,6 +1,7 @@
 const userService = require("#services/userService")
 const requestBodyKeys = require("#constants")
 const objectValidator = require("#utils/objectValidator")
+const { nodeLogger } = require("#config/logger")
 
 const createUserController = async (req, res) => {
   try {
@@ -37,7 +38,7 @@ const createUserController = async (req, res) => {
       },
     })
   } catch (e) {
-    console.log(e)
+    nodeLogger.error(e)
     return res.status(500).json({
       errors: [{ code: 500, message: "Server Error" }],
     })

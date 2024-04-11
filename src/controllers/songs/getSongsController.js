@@ -1,5 +1,6 @@
 const songService = require("#services/songService")
 const userService = require("#services/userService")
+const { nodeLogger } = require("#config/logger")
 
 const getSongsController = async (req, res) => {
   try {
@@ -33,7 +34,7 @@ const getSongsController = async (req, res) => {
       })
     }
   } catch (e) {
-    console.log(e)
+    nodeLogger.error(e)
     return res.status(500).json({
       errors: [{ code: 500, message: "Server Error" }],
     })

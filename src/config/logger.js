@@ -1,12 +1,27 @@
 const winston = require("winston")
-const generateSequelizeLogFilename = require("#utils/sequelizeLogger")
+const { logFilePaths } = require("#constants")
 
 const sequelizeLogger = winston.createLogger({
-  level: "debug" || "info",
-  format: winston.format.json(),
+  format: winston.format.simple(),
   transports: [
-    new winston.transports.File({ filename: generateSequelizeLogFilename() }),
+    new winston.transports.File({
+      filename: logFilePaths.sequelize.info,
+      level: "debug",
+      eol: "\n\n",
+    }),
   ],
 })
 
-module.exports = sequelizeLogger
+const nodeLogger = winston.createLogger({
+  format: winston.format.simple(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({
+      filename: logFilePaths.node.errors,
+      level: "error",
+      eol: "\n\n",
+    }),
+  ],
+})
+
+module.exports = { sequelizeLogger, nodeLogger }
