@@ -3,8 +3,6 @@ require("dotenv").config()
 const express = require("express")
 
 const sequelize = require("#config/db")
-// eslint-disable-next-line no-unused-vars
-const { User, Song, Album, History } = require("#models/index")
 
 const swaggerUi = require("swagger-ui-express")
 const swaggerDocument = require("#docs/users")
