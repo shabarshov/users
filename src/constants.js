@@ -39,4 +39,10 @@ const logFilePaths = {
   },
 }
 
-module.exports = { requestBodyKeys, logFilePaths }
+const historyLimit = 5
+
+module.exports = {
+  requestBodyKeys,
+  logFilePaths,
+  historyLimit,
+}
