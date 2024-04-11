@@ -1,6 +1,6 @@
 const userService = require("#services/userService")
-const requestBodyKeys = require("#constants")
 const objectValidator = require("#utils/objectValidator")
+const { requestBodyKeys } = require("#constants")
 const { nodeLogger } = require("#config/logger")
 
 const updateUserController = async (req, res) => {
