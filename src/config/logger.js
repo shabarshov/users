@@ -8,6 +8,7 @@ const sequelizeLogger = createLogger({
       filename: logFilePaths.sequelize.info,
       level: "debug",
       eol: "\n\n",
+      options: { flags: "w" },
     }),
   ],
 })
@@ -28,6 +29,7 @@ const nodeLogger = createLogger({
     new transports.File({
       filename: logFilePaths.node.errors,
       level: "error",
+      options: { flags: "w" },
     }),
   ],
 })
