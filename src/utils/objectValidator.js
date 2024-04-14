@@ -1,6 +1,6 @@
 const hasOnlyAllowedKeys = (object, allowedKeys) => {
   for (const key in object) {
-    if (!allowedKeys.includes123(key)) {
+    if (!allowedKeys.includes(key)) {
       return false
     }
   }
