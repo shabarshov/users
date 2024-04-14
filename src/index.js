@@ -6,7 +6,7 @@ const express = require("express")
 const sequelize = require("#config/db")
 
 const swaggerUi = require("swagger-ui-express")
-const swaggerDocument = require("#docs/users")
+const swaggerDocument = require("#docs/index")
 
 const usersRoutes = require("#routes/users")
 const songsRoutes = require("#routes/songs")

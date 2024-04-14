@@ -9,7 +9,7 @@
     "#*": "./src/*.js",
     "#config/*": "./src/config/*.js",
     "#controllers/*": "./src/controllers/*.js",
-    "#docs/*": "./src/docs/*.json",
+    "#docs/*": "./src/docs/*.js",
     "#models/*": "./src/models/*.js",
     "#routes/*": "./src/routes/*.js",
     "#services/*": "./src/services/*.js",
