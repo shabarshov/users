@@ -29,7 +29,10 @@ const swaggerDocument = {
     },
 
     "/history": { post: historyRoutes.Post },
-    "/history/{user_id}": { get: historyRoutes.Get },
+    "/history/{user_id}": {
+      get: historyRoutes.Get,
+      delete: historyRoutes.Delete,
+    },
   },
   components: {
     schemas: {
