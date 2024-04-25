@@ -20,17 +20,23 @@ const getHistoryController = async (req, res) => {
     }
 
     const userHistory = await historyService.getSongsByUserId(userId)
+
+    const responseSongs = []
+
+    for (const key in userHistory) {
+      const responseSong = await fetch(
+        `http://sound-data.local/api/songs/${userHistory[key].songId}`
+      )
+
+      if (responseSong.ok) {
+        const responseSongData = await responseSong.json()
+        responseSongs.push(responseSongData)
+      }
+    }
+
     if (userHistory) {
       return res.status(200).json({
-        data: [
-          ...userHistory.map((song) => {
-            return {
-              id: song.id,
-              songId: song.songId,
-              userId: song.userId,
-            }
-          }),
-        ],
+        data: responseSongs,
       })
     }
   } catch (e) {

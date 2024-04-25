@@ -20,17 +20,25 @@ const getSongsController = async (req, res) => {
     }
 
     const userSongs = await songService.getSongsByUserId(userId)
+
+    const responseSongs = []
+
+    for (const key in userSongs) {
+      const responseSong = await fetch(
+        `http://sound-data.local/api/songs/${userSongs[key].songId}`
+      )
+
+      if (responseSong.ok) {
+        const responseSongData = await responseSong.json()
+        responseSongs.push(responseSongData)
+      } else {
+        await songService.deleteSong({ songId: userSongs[key].songId })
+      }
+    }
+
     if (userSongs) {
       return res.status(200).json({
-        data: [
-          ...userSongs.map((song) => {
-            return {
-              id: song.id,
-              songId: song.songId,
-              userId: song.userId,
-            }
-          }),
-        ],
+        data: responseSongs,
       })
     }
   } catch (e) {

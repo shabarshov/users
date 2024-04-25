@@ -20,6 +20,21 @@ const getAlbumsController = async (req, res) => {
     }
 
     const userAlbums = await albumService.getAlbumsByUserId(userId)
+
+    const responseAlbums = []
+
+    for (const key in userAlbums) {
+      const responseAlbum =
+        await `http://sound-data.local/api/album/${userAlbums[key].albumId}`
+
+      if (responseAlbum.ok) {
+        const responseAlbumData = await responseAlbum.json()
+        responseAlbums.push(responseAlbumData)
+      } else {
+        await albumService.deleteAlbum({ albumId: userAlbums[key].albumId })
+      }
+    }
+
     if (userAlbums) {
       return res.status(200).json({
         data: [

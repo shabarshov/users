@@ -29,22 +29,31 @@ const addSongController = async (req, res) => {
       })
     }
 
-    const existingSong = await songService.getSong(songData)
+    const alreadyAddedSong = await songService.getSong(songData)
 
-    if (existingSong) {
+    if (alreadyAddedSong) {
       return res.status(403).json({
         errors: [{ code: 403, message: "That song already exists" }],
       })
     }
 
+    const responseSong = await fetch(
+      `http://sound-data.local/api/songs/${songData.song_id}`
+    )
+
+    if (!responseSong.ok) {
+      return res.status(404).json({
+        errors: [{ code: 404, message: "That song not found" }],
+      })
+    }
+
+    const responseSongData = await responseSong.json()
+
     const newSong = await songService.addSong(songData)
+
     if (newSong) {
       return res.status(200).json({
-        data: {
-          id: newSong.id,
-          song_id: newSong.songId,
-          user_id: newSong.userId,
-        },
+        ...responseSongData,
       })
     }
   } catch (e) {

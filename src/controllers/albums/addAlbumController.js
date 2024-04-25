@@ -29,24 +29,30 @@ const addAlbumController = async (req, res) => {
       })
     }
 
-    const existingAlbum = await albumService.getAlbum(albumData)
+    const alreadyAddedAlbum = await albumService.getAlbum(albumData)
 
-    if (existingAlbum) {
+    if (alreadyAddedAlbum) {
       return res.status(403).json({
         errors: [{ code: 403, message: "That album already exists" }],
       })
     }
 
-    console.log("From controller: ")
-    console.log(albumData)
+    const responseAlbum = await fetch(
+      `http://sound-data.local/api/albums/${albumData.album_id}`
+    )
+
+    if (!responseAlbum.ok) {
+      return res.status(404).json({
+        errors: [{ code: 404, message: "That album not found" }],
+      })
+    }
+
+    const responseAlbumData = await responseAlbum.json()
+
     const newAlbum = await albumService.addAlbum(albumData)
     if (newAlbum) {
       return res.status(200).json({
-        data: {
-          id: newAlbum.id,
-          user_id: newAlbum.userId,
-          album_id: newAlbum.albumId,
-        },
+        ...responseAlbumData,
       })
     }
   } catch (e) {
