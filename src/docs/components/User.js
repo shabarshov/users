@@ -3,11 +3,11 @@ const User = {
   properties: {
     username: {
       type: "string",
-      example: "your_username",
+      example: "username",
     },
     password: {
       type: "string",
-      example: "your_password",
+      example: "password",
     },
   },
 }

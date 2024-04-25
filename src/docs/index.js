@@ -25,6 +25,7 @@ const swaggerDocument = {
     "/users/{user_id}": {
       delete: usersRoutes.Delete,
       patch: usersRoutes.Patch,
+      get: usersRoutes.Get,
     },
 
     "/history": { post: historyRoutes.Post },
