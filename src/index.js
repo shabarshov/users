@@ -20,11 +20,17 @@ const PORT = process.env.PORT || 8080
 const app = express()
 
 app.use(express.json())
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-app.use("/users", usersRoutes)
-app.use("/songs", songsRoutes)
-app.use("/history", historyRoutes)
-app.use("/albums", albumsRoutes)
+app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use("/api/v1/users", usersRoutes)
+app.use("/api/v1/songs", songsRoutes)
+app.use("/api/v1/history", historyRoutes)
+app.use("/api/v1/albums", albumsRoutes)
+
+app.use((req, res) => {
+  res.status(404).json({
+    errors: [{ code: 404, message: "Not Found" }],
+  })
+})
 
 const start = async () => {
   try {
