@@ -1,6 +1,8 @@
 require("dotenv").config()
 require("#models/index")
 
+const FORCE_DB_SYNC = process.env.FORCE_DB_SYNC === "true" || false
+
 const express = require("express")
 
 const sequelize = require("#config/db")
@@ -29,7 +31,7 @@ const start = async () => {
     await sequelize.authenticate()
     console.log("Connection to the database has been established successfully")
 
-    await sequelize.sync({ force: false })
+    await sequelize.sync({ force: FORCE_DB_SYNC })
     console.log("Database synchronized successfully")
 
     app.listen(PORT, () => {
