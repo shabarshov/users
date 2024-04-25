@@ -1,4 +1,5 @@
 const User = require("#models/User")
+const { getDifferentFields } = require("#utils/getDifferentFields")
 
 const createUser = async (userData) => {
   return await User.create(userData)
@@ -23,7 +24,14 @@ const updateUserById = async (userId, newData) => {
     return null
   }
 
-  return await user.update(newData)
+  const extractedUser = {
+    username: user.get("username"),
+    password: user.get("password"),
+  }
+
+  const uniqueNewData = getDifferentFields(extractedUser, newData)
+
+  return await user.update(uniqueNewData)
 }
 
 module.exports = {
