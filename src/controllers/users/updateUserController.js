@@ -22,6 +22,24 @@ const updateUserController = async (req, res) => {
       })
     }
 
+    const existingUsername = await userService.getUserByUsername(
+      newUserData.username
+    )
+
+    if (existingUsername) {
+      return res.status(400).json({
+        errors: [
+          {
+            code: 400,
+            message: "Bad Request",
+            meta: {
+              additional_info: "Username already in use",
+            },
+          },
+        ],
+      })
+    }
+
     const updatedUser = await userService.updateUserById(userId, newUserData)
 
     if (!updatedUser) {
