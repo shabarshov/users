@@ -33,8 +33,13 @@ const getSongsByUserId = async (userId) => {
   })
 }
 
+const clearHistoryByUserId = async (userId) => {
+  return await History.destroy({ where: { userId: userId } })
+}
+
 module.exports = {
   addSong,
   getSong,
   getSongsByUserId,
+  clearHistoryByUserId,
 }
