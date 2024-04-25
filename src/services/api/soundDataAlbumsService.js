@@ -1,7 +1,7 @@
 const { apiUrl } = require("#constants")
 
 const getAlbumById = async (albumId) => {
-  const response = await fetch(`${apiUrl}/album/${albumId}`)
+  const response = await fetch(`${apiUrl}/albums/${albumId}`)
   const { ok, status } = response
   const responseBody = ok ? await response.json() : null
 
