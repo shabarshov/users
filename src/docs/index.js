@@ -17,15 +17,15 @@ const swaggerDocument = {
     "/songs/{user_id}": { get: songsRoutes.Get },
     "/songs/{song_id}": { delete: songsRoutes.Delete },
 
+    "/albums": { post: albumsRoutes.Post },
     "/albums/{user_id}": { get: albumsRoutes.Get },
     "/albums/{album_id}": { delete: albumsRoutes.Delete },
-    "/albums": { post: albumsRoutes.Post },
 
     "/users": { post: usersRoutes.Post },
     "/users/{user_id}": {
-      delete: usersRoutes.Delete,
-      patch: usersRoutes.Patch,
       get: usersRoutes.Get,
+      patch: usersRoutes.Patch,
+      delete: usersRoutes.Delete,
     },
 
     "/history": { post: historyRoutes.Post },
