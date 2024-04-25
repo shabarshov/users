@@ -1,4 +1,7 @@
 const userService = require("#services/database/userService")
+
+const api = require("#services/api/soundDataPlaylistsService")
+
 const { nodeLogger } = require("#config/logger")
 
 const deleteUserController = async (req, res) => {
@@ -19,22 +22,11 @@ const deleteUserController = async (req, res) => {
       })
     }
 
-    const responseUserPlaylists = await fetch(
-      `http://sound-data.local/api/playlists/user/${userId}`
-    )
+    const { ok, responseBody } = await api.getPlaylistByUserId(userId)
 
-    if (responseUserPlaylists.ok) {
-      const userPlaylistsData = await responseUserPlaylists.json()
-
-      for (let i = 0; i < userPlaylistsData.data.length; i++) {
-        const playlistId = i.id
-
-        await fetch(`http://sound-data.local/api/playlists/${playlistId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+    if (ok) {
+      for (let playlist = 0; playlist < responseBody.data.length; playlist++) {
+        await api.deletePlaylistById(playlist.id)
       }
     }
 

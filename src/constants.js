@@ -41,8 +41,11 @@ const logFilePaths = {
 
 const historyLimit = 5
 
+const apiUrl = "http://sound-data.local/api"
+
 module.exports = {
   requestBodyKeys,
   logFilePaths,
   historyLimit,
+  apiUrl,
 }

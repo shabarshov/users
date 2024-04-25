@@ -1,5 +1,8 @@
 const albumService = require("#services/database/albumService")
 const userService = require("#services/database/userService")
+
+const api = require("#services/api/soundDataAlbumsService")
+
 const { nodeLogger } = require("#config/logger")
 
 const getAlbumsController = async (req, res) => {
@@ -24,12 +27,12 @@ const getAlbumsController = async (req, res) => {
     const responseAlbums = []
 
     for (const key in userAlbums) {
-      const responseAlbum =
-        await `http://sound-data.local/api/album/${userAlbums[key].albumId}`
+      const { ok, responseBody } = await api.getAlbumById(
+        userAlbums[key].albumId
+      )
 
-      if (responseAlbum.ok) {
-        const responseAlbumData = await responseAlbum.json()
-        responseAlbums.push(responseAlbumData)
+      if (ok) {
+        responseAlbums.push(responseBody.data)
       } else {
         await albumService.deleteAlbum({ albumId: userAlbums[key].albumId })
       }

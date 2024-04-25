@@ -1,8 +1,9 @@
 const historyService = require("#services/database/historyService")
 const userService = require("#services/database/userService")
+const api = require("#services/api/soundDataSongsService")
 const objectValidator = require("#utils/objectValidator")
-const { requestBodyKeys } = require("#constants")
 const { nodeLogger } = require("#config/logger")
+const { requestBodyKeys } = require("#constants")
 
 const createHistoryController = async (req, res) => {
   try {
@@ -37,11 +38,9 @@ const createHistoryController = async (req, res) => {
       })
     }
 
-    const responseSong = await fetch(
-      `http://sound-data.local/api/songs/${songData.song_id}`
-    )
+    const { ok, responseBody } = await api.getSongById(songData.song_id)
 
-    if (!responseSong.ok) {
+    if (!ok) {
       return res.status(404).json({
         errors: [{ code: 404, message: "That song not found" }],
       })
@@ -51,7 +50,7 @@ const createHistoryController = async (req, res) => {
 
     if (newSong) {
       return res.status(200).json({
-        ...responseSong,
+        ...responseBody,
       })
     }
   } catch (e) {

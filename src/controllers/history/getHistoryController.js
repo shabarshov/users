@@ -1,5 +1,8 @@
 const historyService = require("#services/database/historyService")
 const userService = require("#services/database/userService")
+
+const api = require("#services/api/soundDataSongsService")
+
 const { nodeLogger } = require("#config/logger")
 
 const getHistoryController = async (req, res) => {
@@ -20,17 +23,15 @@ const getHistoryController = async (req, res) => {
     }
 
     const userHistory = await historyService.getSongsByUserId(userId)
-
     const responseSongs = []
 
     for (const key in userHistory) {
-      const responseSong = await fetch(
-        `http://sound-data.local/api/songs/${userHistory[key].songId}`
+      const { ok, responseBody } = await api.getSongById(
+        userHistory[key].songId
       )
 
-      if (responseSong.ok) {
-        const responseSongData = await responseSong.json()
-        responseSongs.push(responseSongData)
+      if (ok) {
+        responseSongs.push(responseBody.data)
       }
     }
 

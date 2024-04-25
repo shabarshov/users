@@ -1,5 +1,8 @@
 const songService = require("#services/database/songService")
 const userService = require("#services/database/userService")
+
+const api = require("#services/api/soundDataSongsService")
+
 const { nodeLogger } = require("#config/logger")
 
 const getSongsController = async (req, res) => {
@@ -24,13 +27,10 @@ const getSongsController = async (req, res) => {
     const responseSongs = []
 
     for (const key in userSongs) {
-      const responseSong = await fetch(
-        `http://sound-data.local/api/songs/${userSongs[key].songId}`
-      )
+      const { ok, responseBody } = await api.getSongById(userSongs[key].songId)
 
-      if (responseSong.ok) {
-        const responseSongData = await responseSong.json()
-        responseSongs.push(responseSongData)
+      if (ok) {
+        responseSongs.push(responseBody.data)
       } else {
         await songService.deleteSong({ songId: userSongs[key].songId })
       }
