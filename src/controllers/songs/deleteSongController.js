@@ -1,4 +1,4 @@
-const songService = require("#services/songService")
+const songService = require("#services/database/songService")
 const { nodeLogger } = require("#config/logger")
 
 const deleteSongController = async (req, res) => {

@@ -1,4 +1,4 @@
-const userService = require("#services/userService")
+const userService = require("#services/database/userService")
 const objectValidator = require("#utils/objectValidator")
 const { requestBodyKeys } = require("#constants")
 const { nodeLogger } = require("#config/logger")

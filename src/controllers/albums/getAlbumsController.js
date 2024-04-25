@@ -1,5 +1,5 @@
-const albumService = require("#services/albumService")
-const userService = require("#services/userService")
+const albumService = require("#services/database/albumService")
+const userService = require("#services/database/userService")
 const { nodeLogger } = require("#config/logger")
 
 const getAlbumsController = async (req, res) => {

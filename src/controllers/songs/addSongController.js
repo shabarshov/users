@@ -1,5 +1,5 @@
-const songService = require("#services/songService")
-const userService = require("#services/userService")
+const songService = require("#services/database/songService")
+const userService = require("#services/database/userService")
 const objectValidator = require("#utils/objectValidator")
 const { requestBodyKeys } = require("#constants")
 const { nodeLogger } = require("#config/logger")

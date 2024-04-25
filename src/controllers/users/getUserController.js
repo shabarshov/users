@@ -1,4 +1,4 @@
-const userService = require("#services/userService")
+const userService = require("#services/database/userService")
 const { nodeLogger } = require("#config/logger")
 
 const getUserController = async (req, res) => {

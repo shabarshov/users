@@ -1,4 +1,4 @@
-const albumService = require("#services/albumService")
+const albumService = require("#services/database/albumService")
 const { nodeLogger } = require("#config/logger")
 
 const deleteAlbumController = async (req, res) => {
