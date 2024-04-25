@@ -37,9 +37,14 @@ const clearHistoryByUserId = async (userId) => {
   return await History.destroy({ where: { userId: userId } })
 }
 
+const deleteSong = async (data) => {
+  return await History.destroy({ where: { ...data } })
+}
+
 module.exports = {
   addSong,
   getSong,
   getSongsByUserId,
   clearHistoryByUserId,
+  deleteSong,
 }
