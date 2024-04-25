@@ -27,28 +27,28 @@ const getAlbumsController = async (req, res) => {
     const responseAlbums = []
 
     for (const key in userAlbums) {
-      const { ok, responseBody } = await api.getAlbumById(
+      const { ok, status, responseBody } = await api.getAlbumById(
         userAlbums[key].albumId
       )
 
       if (ok) {
         responseAlbums.push(responseBody.data)
-      } else {
+      }
+
+      if (status === 500) {
+        return res.status(500).json({
+          errors: [{ code: 500, message: "Server error" }],
+        })
+      }
+
+      if (status === 404) {
         await albumService.deleteAlbum({ albumId: userAlbums[key].albumId })
       }
     }
 
     if (userAlbums) {
       return res.status(200).json({
-        data: [
-          ...userAlbums.map((album) => {
-            return {
-              id: album.id,
-              albumId: album.albumId,
-              userId: album.userId,
-            }
-          }),
-        ],
+        data: responseAlbums,
       })
     }
   } catch (e) {

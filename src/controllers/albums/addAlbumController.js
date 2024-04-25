@@ -1,6 +1,7 @@
 const albumService = require("#services/database/albumService")
 const userService = require("#services/database/userService")
 const api = require("#services/api/soundDataAlbumsService")
+const { handleHttpStatusErrors } = require("#utils/errorHandler")
 const objectValidator = require("#utils/objectValidator")
 const { requestBodyKeys } = require("#constants")
 const { nodeLogger } = require("#config/logger")
@@ -38,12 +39,12 @@ const addAlbumController = async (req, res) => {
       })
     }
 
-    const { ok, responseBody } = await api.getAlbumById(albumData.album_id)
+    const { ok, status, responseBody } = await api.getAlbumById(
+      albumData.album_id
+    )
 
     if (!ok) {
-      return res.status(404).json({
-        errors: [{ code: 404, message: "That album not found" }],
-      })
+      return res.status(status).json(handleHttpStatusErrors(status))
     }
 
     const newAlbum = await albumService.addAlbum(albumData)

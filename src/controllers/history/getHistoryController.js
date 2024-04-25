@@ -26,12 +26,22 @@ const getHistoryController = async (req, res) => {
     const responseSongs = []
 
     for (const key in userHistory) {
-      const { ok, responseBody } = await api.getSongById(
+      const { ok, status, responseBody } = await api.getSongById(
         userHistory[key].songId
       )
 
       if (ok) {
         responseSongs.push(responseBody.data)
+      }
+
+      if (status === 500) {
+        return res.status(500).json({
+          errors: [{ code: 500, message: "Server error" }],
+        })
+      }
+
+      if (status === 404) {
+        await historyService.deleteSong({ songId: userHistory[key].songId })
       }
     }
 

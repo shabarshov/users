@@ -1,6 +1,7 @@
 const songService = require("#services/database/songService")
 const userService = require("#services/database/userService")
 const api = require("#services/api/soundDataSongsService")
+const { handleHttpStatusErrors } = require("#utils/errorHandler")
 const objectValidator = require("#utils/objectValidator")
 const { requestBodyKeys } = require("#constants")
 const { nodeLogger } = require("#config/logger")
@@ -38,12 +39,10 @@ const addSongController = async (req, res) => {
       })
     }
 
-    const { ok, responseBody } = await api.getSongById(songData.song_id)
+    const { ok, status, responseBody } = await api.getSongById(songData.song_id)
 
     if (!ok) {
-      return res.status(404).json({
-        errors: [{ code: 404, message: "That song not found" }],
-      })
+      return res.status(status).json(handleHttpStatusErrors(status))
     }
 
     const newSong = await songService.addSong(songData)

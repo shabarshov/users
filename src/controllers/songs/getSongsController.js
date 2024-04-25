@@ -27,11 +27,21 @@ const getSongsController = async (req, res) => {
     const responseSongs = []
 
     for (const key in userSongs) {
-      const { ok, responseBody } = await api.getSongById(userSongs[key].songId)
+      const { ok, status, responseBody } = await api.getSongById(
+        userSongs[key].songId
+      )
 
       if (ok) {
         responseSongs.push(responseBody.data)
-      } else {
+      }
+
+      if (status === 500) {
+        return res.status(500).json({
+          errors: [{ code: 500, message: "Server error" }],
+        })
+      }
+
+      if (status === 404) {
         await songService.deleteSong({ songId: userSongs[key].songId })
       }
     }
