@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Get = {
-  tags: ["songs"],
+  tags: tagNames.songs,
   summary: "Get songs",
   description: "Get all the user's songs by **user_id**",
   parameters: [

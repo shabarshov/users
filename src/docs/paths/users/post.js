@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Post = {
-  tags: ["users"],
+  tags: tagNames.users,
   summary: "Create new user",
   description: "Create a new user by **username** and **password**",
   requestBody: {

@@ -1,3 +1,10 @@
+const tagNames = {
+  songs: ["songs"],
+  albums: ["albums"],
+  history: ["history"],
+  users: ["users"],
+}
+
 const tags = [
   { name: "songs" },
   { name: "albums" },
@@ -5,4 +12,4 @@ const tags = [
   { name: "users" },
 ]
 
-module.exports = tags
+module.exports = { tagNames, tags }

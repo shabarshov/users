@@ -1,5 +1,7 @@
+const { tagNames } = require("#docs/tags")
+
 const Delete = {
-  tags: ["users"],
+  tags: tagNames.users,
   summary: "Delete user",
   description: "Delete a user by **password**",
   parameters: [

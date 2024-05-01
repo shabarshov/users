@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Delete = {
-  tags: ["albums"],
+  tags: tagNames.albums,
   summary: "Delete album",
   description: "Delete an album from a user by **album_id** and **user_id**",
   parameters: [

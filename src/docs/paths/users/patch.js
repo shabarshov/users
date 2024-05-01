@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Patch = {
-  tags: ["users"],
+  tags: tagNames.users,
   summary: "Update user data",
   description: "Update user data by **user_id,** **username** and **password**",
   parameters: [

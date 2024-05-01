@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Delete = {
-  tags: ["history"],
+  tags: tagNames.history,
   summary: "Clear history",
   description: "Delete all songs from the user's history by **user_id**",
   parameters: [

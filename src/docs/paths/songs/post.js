@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Post = {
-  tags: ["songs"],
+  tags: tagNames.songs,
   summary: "Add song to the user",
   description: "Add a song to the user by **user_id** and **song_id**",
   requestBody: {

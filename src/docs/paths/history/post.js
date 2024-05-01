@@ -1,7 +1,8 @@
 const components = require("#docs/components/index")
+const { tagNames } = require("#docs/tags")
 
 const Post = {
-  tags: ["history"],
+  tags: tagNames.history,
   summary: "Add song to history",
   description: "Add a song to the history by **user_id** and **song_id**",
   requestBody: {
