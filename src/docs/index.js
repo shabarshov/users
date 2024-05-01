@@ -21,9 +21,9 @@ const swaggerDocument = {
     "/albums/{user_id}": { get: albumsRoutes.Get },
     "/albums/{album_id}": { delete: albumsRoutes.Delete },
 
-    "/users": { post: usersRoutes.Post },
+    "/users": { post: usersRoutes.Post, get: usersRoutes.GetAll },
     "/users/{user_id}": {
-      get: usersRoutes.Get,
+      get: usersRoutes.GetOne,
       patch: usersRoutes.Patch,
       delete: usersRoutes.Delete,
     },

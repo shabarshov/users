@@ -1,11 +1,13 @@
 const Delete = require("./delete")
 const Patch = require("./patch")
 const Post = require("./post")
-const Get = require("./get")
+const GetOne = require("./getOne")
+const GetAll = require("./getAll")
 
 module.exports = {
   Delete,
   Patch,
   Post,
-  Get,
+  GetOne,
+  GetAll,
 }

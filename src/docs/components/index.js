@@ -17,6 +17,7 @@ const ResponseNull = require("./ResponseNull")
 const ResponseSong = require("./ResponseSong")
 const ResponseSongs = require("./ResponseSongs")
 const ResponseUser = require("./ResponseUser")
+const ResponseUsers = require("./ResponseUsers")
 const Song = require("./Song")
 const User = require("./User")
 
@@ -40,6 +41,7 @@ module.exports = {
   ResponseSong,
   ResponseSongs,
   ResponseUser,
+  ResponseUsers,
   Song,
-  User  
+  User,
 }
