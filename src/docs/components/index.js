@@ -21,6 +21,8 @@ const ResponseUsers = require("./ResponseUsers")
 const Song = require("./Song")
 const User = require("./User")
 
+const ResponseErrors = require("./ResponseErrors")
+
 module.exports = {
   Album,
   Author,
@@ -44,4 +46,6 @@ module.exports = {
   ResponseUsers,
   Song,
   User,
+
+  ResponseErrors,
 }
