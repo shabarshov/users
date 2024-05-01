@@ -50,6 +50,7 @@ const swaggerDocument = {
       RequestPatchUser: components.RequestPatchUser,
       RequestUserSong: components.RequestUserSong,
       ResponseUser: components.ResponseUser,
+      ResponseUsers: components.ResponseUsers,
       ResponseNull: components.ResponseNull,
       Error: components.Error,
       Error400: components.Error400,
